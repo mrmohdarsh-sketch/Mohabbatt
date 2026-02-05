@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Secret Love Surprise</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Great+Vibes&family=Poppins&display=swap" rel="stylesheet">
+
+<style>
+body {
+  margin: 0;
+  background: #ffe6f2;
+  text-align: center;
+  font-family: Poppins, sans-serif;
+  overflow: hidden;
+}
+
+/* Floating Hearts */
+.floating {
+  position: fixed;
+  bottom: -50px;
+  font-size: 30px;
+  animation: float 8s linear infinite;
+}
+
+@keyframes float {
+  0% {transform: translateY(0); opacity:1;}
+  100% {transform: translateY(-120vh); opacity:0;}
+}
+
+/* Pages */
+.page { display:none; padding-top:100px; }
+.active { display:block; }
+
+/* Buttons */
+button {
+  padding: 12px 25px;
+  font-size: 18px;
+  border: none;
+  border-radius: 25px;
+  background: red;
+  color: white;
+  cursor: pointer;
+  margin-top: 30px;
+  box-shadow: 0 0 10px pink;
+}
+
+/* Stylish Text */
+.bigText {
+  font-size: 45px;
+  color: red;
+  font-family: Pacifico, cursive;
+}
+
+.typeText {
+  font-size: 22px;
+  color: darkred;
+  width: 80%;
+  margin: auto;
+}
+
+/* Shayari Font */
+.shayari {
+  font-size: 28px;
+  color: #b30000;
+  font-family: 'Great Vibes', cursive;
+  margin: 20px;
+  text-shadow: 0 0 5px pink;
+}
+</style>
+</head>
+
+<body>
+
+<!-- Floating Hearts Script -->
+<script>
+setInterval(() => {
+  let f = document.createElement("div");
+  f.className = "floating";
+  let emojis = ["❤️","❣️","💕","💝","🌹"];
+  f.innerHTML = emojis[Math.floor(Math.random()*emojis.length)];
+  f.style.left = Math.random()*100 + "vw";
+  f.style.animationDuration = (Math.random()*3+5)+"s";
+  document.body.appendChild(f);
+  setTimeout(()=>f.remove(),8000);
+},200);
+</script>
+
+<!-- PAGE 1 -->
+<div class="page active" id="p1">
+  <div class="bigText">Tumhare liye ek secret surprise hai… 💌</div>
+  <button onclick="nextPage(2)">OPEN MY HEART 💖</button>
+</div>
+
+<!-- PAGE 2 -->
+<div class="page" id="p2">
+  <div class="typeText" id="typing"></div>
+  <button onclick="nextPage(3)">NEXT 💕</button>
+</div>
+
+<!-- PAGE 3 SHAYARI -->
+<div class="page" id="p3">
+  <div class="shayari">
+  MERE HATHO MEIN HATH RAKHOGI KYA,<br>
+  TUM MUJHSE MOHABBAT KAROGI KYA,<br>
+  YEH CHAAND-TAARE-PHOOL-PARINDE TO SAB KHAYALI BAATEIN HAIN,<br>
+  TUM MERE BACCHO KI MUMMY BANOGI KYA 💝
+  </div>
+  <button onclick="nextPage(4)">AAGE CHALEIN 🤭</button>
+</div>
+
+<!-- PAGE 4 FINAL -->
+<div class="page" id="p4">
+  <div class="bigText">Will you be mine forever? ❤️</div>
+  <button onclick="alert('She said YES 💖')">YES BABY 💍</button>
+  <button id="no">LET ME THINK 😂</button>
+</div>
+
+<script>
+// Page Switch
+function nextPage(n){
+  document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+  document.getElementById("p"+n).classList.add("active");
+}
+
+// Typewriter Text
+let text = "Shayad tumhe pata na ho... lekin har din tumhara naam meri duaon me hota hai 💕";
+let i = 0;
+function typeWriter(){
+  if(i < text.length){
+    document.getElementById("typing").innerHTML += text.charAt(i);
+    i++;
+    setTimeout(typeWriter, 50);
+  }
+}
+typeWriter();
+
+// NO Button Bhagega
+document.getElementById("no").onmouseover = function(){
+  this.style.position = "absolute";
+  this.style.left = Math.random()*80 + "vw";
+  this.style.top = Math.random()*80 + "vh";
+};
+</script>
+
+</body>
+</html>
